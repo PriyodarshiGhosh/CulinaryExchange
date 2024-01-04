@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
-
+import { MY_IP } from "../constants";
 export const Home = () => {
   const userID = useGetUserID();
   const [recipes, setRecipes] = useState([]);
@@ -9,7 +9,7 @@ export const Home = () => {
     console.log(userID)
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/recipes/id?userID=${userID}`);
+        const response = await axios.get(MY_IP+`/recipes/id?userID=${userID}`);
         setRecipes(response.data);
         console.log(response.data);
       } catch (err) {
@@ -22,7 +22,7 @@ export const Home = () => {
 
   const saveRecipe = async (recipeID) => {
     try {
-      const response = await axios.post("http://localhost:3001/globalrecipes", {
+      const response = await axios.post(MY_IP+"/globalrecipes", {
         recipeID,
         userID,
       });

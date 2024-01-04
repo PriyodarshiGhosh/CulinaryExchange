@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { MY_IP } from "../constants";
 export const SavedRecipes=()=>{
     const [recipes, setRecipes] = useState([]);
     useEffect(() => {
         const fetchRecipes = async () => {
           try {
-            const response = await axios.get("http://localhost:3001/globalrecipes");
+            const response = await axios.get(MY_IP+"/globalrecipes");
             console.log(response.data)
             setRecipes(response.data);
           } catch (err) {

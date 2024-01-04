@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { MY_IP } from "../constants";
 export const Login = () => {
     const [_, setCookies] = useCookies(["access_token"]);
   
@@ -14,7 +15,7 @@ export const Login = () => {
       event.preventDefault();
   
       try {
-        const result = await axios.post("http://localhost:3001/auth/login", {
+        const result = await axios.post(MY_IP+"/auth/login", {
           username,
           password,
         });

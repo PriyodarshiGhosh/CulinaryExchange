@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { MY_IP } from "../constants";
 export const Search=()=>{
     const [recipes, setRecipes] = useState([]);
     const searchRecipes = async (keywords) => {
@@ -9,7 +10,7 @@ export const Search=()=>{
                     setRecipes([]); // Clear recipes if no keywords entered
                     return;
                 }
-            const response = await axios.get("http://localhost:3001/recipes/search", {
+            const response = await axios.get(MY_IP+"/recipes/search", {
                 params: {
                     keywords: keywords,
                 },

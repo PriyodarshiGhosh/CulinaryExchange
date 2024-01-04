@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { MY_IP } from "../constants";
 export const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -12,7 +13,7 @@ export const Register = () => {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        await axios.post("http://localhost:3001/auth/register", {
+        await axios.post(MY_IP+"/auth/register", {
           username,
           password,
         });
