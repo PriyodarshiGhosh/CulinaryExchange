@@ -13,12 +13,18 @@ export const Register = () => {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        await axios.post(MY_IP+"/auth/register", {
+        const result=await axios.post(MY_IP+"/auth/register", {
           username,
           password,
         });
+        console.log(result);
+        if(result.data.message=='User already exists'){
+          throw new Error("user exists")
+
+        }
         alert("Registration Completed! Now login.");
       } catch (error) {
+        alert("user exists")
         console.error(error);
       }
     };

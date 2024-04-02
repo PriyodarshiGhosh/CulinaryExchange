@@ -19,11 +19,16 @@ export const Login = () => {
           username,
           password,
         });
-  
+        if(!result.data.token){
+          throw new Error("Authentication failed: No token received");
+        }
+        console.log(result);
         setCookies("access_token", result.data.token);
         window.localStorage.setItem("userID", result.data.userID);
         navigate("/");
       } catch (error) {
+        console.log("hello");
+        alert("invalid login")
         console.error(error);
       }
     };
